@@ -1,0 +1,105 @@
+.home-header-container {
+    height: 60px;
+    background-color: white;
+    width: 100%;
+    .home-header-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        padding: 5px 20px;
+        .left-header-content {
+            width: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            i {
+                font-size: 25px;
+                color: grey;
+                cursor: pointer;
+                padding: 10px;
+            }
+            .header-logo {
+                background: url("../../assets/logo.svg") center no-repeat;
+                width: 160px;
+                height: 40px;
+            }
+        }
+        .center-header-content {
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .child-content {
+                .sub-title {
+                    font-weight: lighter;
+                    font-size: 10px;
+                }
+            }
+        }
+        .right-header-content {
+            width: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.home-header-banner {
+    background: url("../../assets/banner.jpg");
+    height: 486px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    .content-up {
+        height: 50%;
+        padding-top: 30px;
+        .title1 {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 32px;
+            text-shadow: 1px 1px 1px #333;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .title2 {
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 1px #333;
+            color: #fff;
+            margin-bottom: 18px;
+        }
+        .search {
+            border: 1px solid red;
+            width: fit-content;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            width: 420px;
+            height: 50px;
+            border-radius: 25px;
+            outline: none;
+            background-color: #f7d800;
+            border: 1px solid transparent;
+            i {
+                margin: 0 8px;
+            }
+            input {
+                background: transparent;
+                outline: none;
+                border: none;
+                width: 360px;
+                padding-left: 10px;
+                height: 30px;
+            }
+        }
+    }
+    .content-down {
+        height: 50%;
+        .options {}
+    }
+}
