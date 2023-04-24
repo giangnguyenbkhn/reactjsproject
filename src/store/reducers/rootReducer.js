@@ -10,20 +10,20 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 
 const persistCommonConfig = {
-    storage: storage,
-    stateReconciler: autoMergeLevel2,
+  storage: storage,
+  stateReconciler: autoMergeLevel2,
 };
 
 const userPersistConfig = {
-    ...persistCommonConfig,
-    key: "user",
-    whitelist: ["isLoggedIn", "userInfo"],
+  ...persistCommonConfig,
+  key: "user",
+  whitelist: ["isLoggedIn", "userInfo"],
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (history) =>
-combineReducers({
+  combineReducers({
     router: connectRouter(history),
     user: persistReducer(userPersistConfig, userReducer),
     app: appReducer,
-});
+  });

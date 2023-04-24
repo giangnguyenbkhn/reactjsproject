@@ -8,6 +8,8 @@ import ModalEditUser from "./ModalEditUser";
 //get api
 import {
   getAllUsers,
+  getKeyUser,
+  // getKeyGender,
   createNewUserService,
   deleteUserService,
   editUserService,
@@ -23,18 +25,26 @@ class UserManage extends Component {
       isOpenModalUser: false,
       isOpenModaEditUser: false,
       userEdit: {},
+      keySearch: {
+        keySearchName: "",
+        keySearchGender: "ALL",
+      },
     };
   }
 
   async componentDidMount() {
+    // console.log("didmount");
     await this.getAllUsersFromReact();
   }
+
   /**
-   * Life cycle
+   * Life cycle(Luong Mounting)
    * Run component:
-   Đầu tiên khi component được gọi thì hàm hàm constructor() 
-   được gọi, sau đó đến componentWillMount(), tiếp theo là reder() ra ngoài và 
-   cuối cùng hàm componentDidMount được gọi khi đã render() xong.
+   1 Run constructor->init state
+   2 Render lan dau tien(chua quan tam den state)
+   3 Did mount(set state thay doi de render lan 2)
+   4 Render lan 2 sau khi da set state ...(re-render)
+   Moi khi thuc hien 1 dieu kien nao vi du co ham setState, ham render se chay 2 lan, lan 1 chay k quan tam den state, lan 2 update state va chay lai
    * 1 component co the render nhieu lan nhma chi didmount 1 lan, lan update component
    * sau khong chay vao didmount ma se chay vao ham khac de re-render
    * props giup lay duoc du lieu tu 1 component khac
@@ -92,10 +102,10 @@ class UserManage extends Component {
   createNewUser = async (data) => {
     try {
       let response = await createNewUserService(data);
-
+      // console.log(response);
       //cap nhat lai all user ngay sau khi them ma k can refresh bang cach goi 2 api
-      if (response && response.message.errCode !== 0) {
-        alert(response.message.errMessage);
+      if (response && response.errCode !== 0) {
+        alert(response.errMessage);
       } else {
         await this.getAllUsersFromReact();
         this.setState({
@@ -126,16 +136,61 @@ class UserManage extends Component {
   // lay tat ca user hien thi ra table
   getAllUsersFromReact = async () => {
     let response = await getAllUsers("ALL");
-
     if (response && response.errCode === 0) {
-      // ham setState la ham bat dong bo, tuy nhien 1 so truong hop it data se k anh huong
+      //ham setState la ham bat dong bo, tuy nhien 1 so truong hop it data se k anh huong
       //khi co setState component se tu dong render lai them 1 lan
       this.setState({
         arrUsers: response.users,
       });
     }
   };
+  //xu li su kien onChange thanh search nguoi dung
+  //setState la ham bat dong bo, goi call back, sau khi setState xong moi goi den ham RequestSearch
+  handleSearch = (e, id) => {
+    let copySearchState = { ...this.state.keySearch };
+    copySearchState[id] = e.target.value;
+    this.setState(
+      {
+        keySearch: { ...copySearchState },
+      },
+      async () => await this.RequestSearch()
+    );
+  };
+  //handle search gender
+  // handleSearchGender = (e) => {
+  //   this.setState(
+  //     {
+  //       keySearchGender: e.target.value,
+  //     },
+  //     async () => await this.RequestSearchGender()
+  //   );
+  // };
+  //gui searchKey toi api
+  RequestSearch = async () => {
+    // console.log(this.state.keySearch);
+    let response = await getKeyUser(this.state.keySearch);
+    if (response && response.errCode === 0) {
+      this.setState({
+        arrUsers: response.users,
+      });
+    }
+
+    if (this.state.keySearch === "") {
+      await this.getAllUsersFromReact();
+    }
+  };
+  //gui search gender toi api
+  // RequestSearchGender = async () => {
+  //   let response = await getKeyGender(this.state.keySearchGender);
+  //   if (response && response.errCode === 0) {
+  //     this.setState({
+  //       arrUsers: response.users,
+  //     });
+  //   }
+  // };
+
   render() {
+    //  console.log("render");
     let arrUsers = this.state.arrUsers;
     return (
       <div className="user-container">
@@ -146,6 +201,7 @@ class UserManage extends Component {
           toggleFromParent={this.toggleUserModal}
           createNewUser={this.createNewUser}
         />
+        {/* khi nao an vao nut sua thi moi mount component modaedituser, de su dung duoc ham component didupdate ben modaledituser */}
         {this.state.isOpenModaEditUser && (
           <ModalEditUser
             isOpen={this.state.isOpenModaEditUser}
@@ -166,6 +222,29 @@ class UserManage extends Component {
               <i class="fas fa-plus px-3"></i>Add new user
             </button>
           </div>
+          <div className="mx1 mt-3">
+            <input
+              placeholder="Enter name to find"
+              onChange={(e) => this.handleSearch(e, "keySearchName")}
+            ></input>
+            {/* <button
+              className="mx1"
+              type="submit"
+              onClick={() => this.getUserFromKey()}
+            >
+              Search
+            </button> */}
+            <select
+              name=""
+              id=""
+              className="p-1"
+              onChange={(e) => this.handleSearch(e, "keySearchGender")}
+            >
+              <option value="ALL">ALL</option>
+              <option value="1">Male</option>
+              <option value="0">Female</option>
+            </select>
+          </div>
           <div className="users-table mt-4 mx-4 ">
             <table id="customers">
               <tbody>
@@ -174,6 +253,7 @@ class UserManage extends Component {
                   <th>First name</th>
                   <th>Last name</th>
                   <th>Address</th>
+                  <th>Gender</th>
                   <th>Actions</th>
                 </tr>
                 {arrUsers &&
@@ -185,6 +265,7 @@ class UserManage extends Component {
                         <td>{item.firstName}</td>
                         <td>{item.lastName}</td>
                         <td>{item.address}</td>
+                        {item.gender === 1 ? <td>Male</td> : <td>Female</td>}
                         <td>
                           <button
                             className="btn-edit"

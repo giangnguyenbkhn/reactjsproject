@@ -1,101 +1,104 @@
 .users-table {
-    font-size: 15px;
-    text-transform: none;
+  font-size: 15px;
+  text-transform: none;
 }
 
 #customers {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    tr {
-        &:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        &:hover {
-            background-color: #ddd;
-        }
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  tr {
+    &:nth-child(even) {
+      background-color: #f2f2f2;
     }
-    th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #04aa6d;
-        color: white;
+    &:hover {
+      background-color: #ddd;
     }
+  }
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04aa6d;
+    color: white;
+  }
 }
 
 #customers td,
 #customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
+  border: 1px solid #ddd;
+  padding: 8px;
 }
 
 button {
-    &.btn-edit {
-        width: 50px;
-        border: none;
-        outline: none;
-        background-color: transparent;
-        color: orange;
-        &:hover {
-            background-color: transparent !important;
-            color: orange !important;
-        }
+  &.btn-edit {
+    width: 50px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: orange;
+    &:hover {
+      background-color: transparent !important;
+      color: orange !important;
     }
-    &.btn-delete {
-        width: 50px;
-        border: none;
-        outline: none;
-        background-color: transparent;
-        color: red;
-        &:hover {
-            background-color: transparent !important;
-            color: red !important;
-        }
+  }
+  &.btn-delete {
+    width: 50px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: red;
+    &:hover {
+      background-color: transparent !important;
+      color: red !important;
     }
+  }
 }
 
 // ModalUser scss
 .modal-user-container {
-    .modal-content {
-        .modal-header {
-            button {
-                &.close {
-                    background-color: transparent;
-                    outline: none;
-                    font-size: 18px;
-                    width: 40px;
-                    border: none;
-                }
-                span {
-                    font-size: 30px;
-                    color: #f2f2f2;
-                }
-            }
+  .modal-content {
+    .modal-header {
+      button {
+        &.close {
+          background-color: transparent;
+          outline: none;
+          font-size: 18px;
+          width: 40px;
+          border: none;
         }
-        .modal-body {
-            .modal-user-body {
-                display: flex;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                .input-container {
-                    display: flex;
-                    flex-direction: column;
-                    width: 45%;
-                    margin: 10px;
-                    &.max-with-input {
-                        width: 100%;
-                    }
-                    input {
-                        border-radius: 3px;
-                        height: 30px;
-                        border: 1px solid rgba(0, 0, 0, 0.01);
-                        outline: none;
-                        padding: 0 10px;
-                        background-color: aliceblue;
-                    }
-                }
-            }
+        span {
+          font-size: 30px;
+          color: #f2f2f2;
         }
+      }
     }
+    .modal-body {
+      .modal-user-body {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .input-container {
+          display: flex;
+          flex-direction: column;
+          width: 45%;
+          margin: 10px;
+          &.max-with-input {
+            width: 100%;
+          }
+          input {
+            border-radius: 3px;
+            height: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.01);
+            outline: none;
+            padding: 0 10px;
+            background-color: aliceblue;
+          }
+          .select-gender {
+            padding: 5px;
+          }
+        }
+      }
+    }
+  }
 }

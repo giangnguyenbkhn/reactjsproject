@@ -12,6 +12,7 @@ class ModalUser extends Component {
       password: "",
       firstName: "",
       lastName: "",
+      gender: "",
       address: "",
     };
     //listen event emitter
@@ -24,6 +25,7 @@ class ModalUser extends Component {
         password: "",
         firstName: "",
         lastName: "",
+        gender: "",
         address: "",
       });
     });
@@ -43,18 +45,27 @@ class ModalUser extends Component {
     // );
     //good code
     //modify gian tiep
+    //this.state.email=this.state["email"]
     let copyState = { ...this.state };
     copyState[id] = event.target.value;
+    console.log(copyState);
     this.setState(
       {
         ...copyState,
       }
-      //   () => console.log(this.state)
+      // () => console.log(this.state)
     );
   };
   checkValidateInput = () => {
     let isValid = true;
-    let arrInput = ["email", "password", "firstName", "lastName", "address"];
+    let arrInput = [
+      "email",
+      "password",
+      "firstName",
+      "lastName",
+      "address",
+      "gender",
+    ];
     for (let i = 0; i < arrInput.length; i++) {
       if (!this.state[arrInput[i]]) {
         isValid = false;
@@ -69,6 +80,7 @@ class ModalUser extends Component {
     if (isValid === true) {
       //call api create model
       this.props.createNewUser(this.state);
+      console.log(this.state);
       //set state cho modal ve rong o day cung duoc neu k muon su dung emitter
       // this.setState({
       //   email: "",
@@ -136,7 +148,28 @@ class ModalUser extends Component {
                 value={this.state.lastName}
               />
             </div>
-            <div className="input-container form-group max-with-input ">
+
+            <div className="input-container form-group">
+              <label htmlFor="">Gender</label>
+              {/* <input
+                type="text"
+                onChange={(event) => this.handleOnchangeInput(event, "gender")}
+                value={this.state.lastName}
+              /> */}
+
+              <select
+                name=""
+                className="select-gender"
+                id="gender"
+                onChange={(event) => this.handleOnchangeInput(event, "gender")}
+              >
+                <option value="2">Unknown</option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+              </select>
+            </div>
+
+            <div className="input-container form-group ">
               <label htmlFor="">Address</label>
               <input
                 type="text"

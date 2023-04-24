@@ -47,7 +47,7 @@ class Login extends Component {
         console.log("loggin success");
       }
     } catch (e) {
-      //ma loi trong truong hop khong nhap email or password
+      // ma loi trong truong hop khong nhap email or password
       if (e.response) {
         if (e.response.data) {
           this.setState({
@@ -150,6 +150,7 @@ const mapDispatchToProps = (dispatch) => {
     navigate: (path) => dispatch(push(path)),
     //truyen userInfo cho actions va reducers xu li va duoc luu o localstorage
     userLoginsuccess: (userInfo) =>
+      //ham dispatch o duoi tuong duong : dispatch({ type: 'USER_LOGIN_SUCCESS',payload:userInfo })}
       dispatch(actions.userLoginsuccess(userInfo)),
   };
 };

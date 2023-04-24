@@ -13,6 +13,7 @@ class ModalEditUser extends Component {
       password: "",
       firstName: "",
       lastName: "",
+      gender: "",
       address: "",
     };
   }
@@ -26,6 +27,7 @@ class ModalEditUser extends Component {
         password: "hard code",
         firstName: user.firstName,
         lastName: user.lastName,
+        gender: user.gender,
         address: user.address,
       });
     }
@@ -39,6 +41,7 @@ class ModalEditUser extends Component {
     this.setState({
       ...copyState,
     });
+    console.log(this.state.gender);
   };
   checkValidateInput = () => {
     let isValid = true;
@@ -54,10 +57,11 @@ class ModalEditUser extends Component {
   };
   handleSaveUser = () => {
     let isValid = this.checkValidateInput();
-    let userUpdateId = this.props.currentUser.id;
+    // let userUpdateId = this.props.currentUser.id;
     if (isValid === true) {
       //call api update user model
-      this.props.editUser(this.state, userUpdateId);
+      // userUpdateId
+      this.props.editUser(this.state);
     }
   };
 
@@ -118,7 +122,27 @@ class ModalEditUser extends Component {
                 value={this.state.lastName}
               />{" "}
             </div>{" "}
-            <div className="input-container form-group max-with-input ">
+            <div className="input-container form-group">
+              <label htmlFor="">Gender</label>
+              {/* <input
+                type="text"
+                onChange={(event) => this.handleOnchangeInput(event, "gender")}
+                value={this.state.lastName}
+              /> */}
+
+              <select
+                name=""
+                className="select-gender"
+                id="gender"
+                onChange={(event) => this.handleOnchangeInput(event, "gender")}
+                value={this.state.gender}
+              >
+                <option value="2">Unknown</option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+              </select>
+            </div>
+            <div className="input-container form-group  ">
               <label htmlFor=""> Address </label>{" "}
               <input
                 type="text"
