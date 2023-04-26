@@ -1,3 +1,4 @@
+// xu li cac actions lien quan den nguoi dung
 import actionTypes from "../actions/actionTypes";
 
 const initialState = {
