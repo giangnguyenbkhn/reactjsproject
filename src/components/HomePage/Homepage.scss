@@ -1,0 +1,143 @@
+// reset slick slider css
+// dung chung cho tat ca slider o homepage
+.slick-prev {
+  border: 2px solid #d7d7d7 !important;
+  left: -10px !important;
+  z-index: 1000;
+  width: 44px !important;
+  height: 48px !important;
+  background-color: white !important;
+  &::before {
+    content: "\2190" !important;
+    color: #e1e1e1 !important;
+  }
+  &:hover {
+    background-color: whitesmoke !important;
+  }
+}
+
+.slick-next {
+  right: -10px !important;
+  border: 2px solid #d7d7d7 !important;
+  z-index: 1000;
+  width: 44px !important;
+  height: 48px !important;
+  background-color: white !important;
+  &::before {
+    content: "\2192" !important;
+    color: #e1e1e1 !important;
+  }
+  &:hover {
+    background-color: whitesmoke !important;
+  }
+}
+
+.section-share.section-specialty {
+  background: #e1e1e1;
+  .section-body {
+    height: auto;
+    // border: 1px solid green;
+    .section-customize {
+      .bg-image {
+        height: 156px;
+        width: 278px;
+        background-image: url("../../assets/Specialty/co-xuong-khop.jpg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: #eee;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.section-share.section-medical-facility {
+  background: white;
+  .section-body {
+    height: auto;
+    // border: 1px solid green;
+    .section-customize {
+      .bg-image {
+        height: 156px;
+        width: 278px;
+        background-image: url("../../assets/Medicalfacility/logo-thucuc.png");
+        background-position: center center;
+        background-repeat: no-repeat !important;
+        background-size: contain;
+        background-color: #eee;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.section-share.section-outstanding-doctor {
+  background: #e1e1e1;
+  .section-body {
+    height: auto;
+    // border: 1px solid green;
+    .section-customize {
+      height: 223px;
+      border: 1px solid #eee;
+      background-color: white;
+      width: 278px !important;
+      .outer-bg {
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+        .bg-image {
+          padding: 5px;
+          height: 120px;
+          width: 120px;
+          background-image: url("../../assets/OutstandingDoctor/anh-dai-dien-bs.jpg");
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-color: #eee;
+          margin-right: 0px auto;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+.section-share {
+  height: 326px;
+  // border: 1px solid;
+  .section-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 1170px;
+    .section-header {
+      height: 60px;
+      // border: 1px solid green;
+      margin-bottom: 30px;
+      padding-top: 30px;
+      .title-section {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .btn-section {
+        float: right;
+        display: block;
+        padding: 10px 15px;
+        border: none;
+        outline: none;
+        background-color: #ebebeb;
+        span {
+          color: black;
+          text-transform: uppercase;
+        }
+        &:hover {
+          background-color: #f7d800;
+          span {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
