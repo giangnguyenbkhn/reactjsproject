@@ -3,7 +3,7 @@
 .slick-prev {
   border: 2px solid #d7d7d7 !important;
   left: -10px !important;
-  z-index: 1000;
+  z-index: 100;
   width: 44px !important;
   height: 48px !important;
   background-color: white !important;
@@ -19,7 +19,7 @@
 .slick-next {
   right: -10px !important;
   border: 2px solid #d7d7d7 !important;
-  z-index: 1000;
+  z-index: 100;
   width: 44px !important;
   height: 48px !important;
   background-color: white !important;
@@ -85,12 +85,12 @@
       .outer-bg {
         display: flex;
         justify-content: center;
-        padding: 5px;
+        padding: 10px;
         .bg-image {
           padding: 5px;
           height: 120px;
           width: 120px;
-          background-image: url("../../assets/OutstandingDoctor/anh-dai-dien-bs.jpg");
+          background-image: url("../../assets/OutstandingDoctor/bsckii-tran-minh-khuyen.jpg");
           background-position: center center;
           background-repeat: no-repeat;
           background-size: cover;
@@ -100,6 +100,66 @@
         }
       }
     }
+  }
+}
+
+.section-share.section-handbook {
+  background: white;
+  .section-body {
+    height: auto;
+    // border: 1px solid green;
+    .section-customize {
+      .bg-image {
+        height: 156px;
+        width: 278px;
+        background-image: url("../../assets/Handbook/mat-q10.jpg");
+        background-position: center center;
+        background-repeat: no-repeat !important;
+        background-size: contain;
+        background-color: #eee;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.section-share.section-about {
+  background: #e1e1e1;
+  height: 500px !important;
+  border-top: 1px solid #f5f5f5;
+  border-bottom: 1px solid #f5f5f5;
+  .about-width {
+    width: 1170px;
+    margin: 0 auto;
+    .section-about-header {
+      padding: 20px 10px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .section-about-content {
+      display: flex;
+      gap: 15px;
+      width: 100%;
+      .section-about-content-left {
+        width: 60%;
+      }
+      .section-about-content-right {
+        text-align: center;
+        width: 40%;
+        font-style: italic;
+        display: flex;
+        align-items: center;
+        font-size: large;
+      }
+    }
+  }
+}
+
+.home-footer {
+  padding-top: 8px;
+  text-align: center;
+  a {
+    text-decoration: none;
   }
 }
 

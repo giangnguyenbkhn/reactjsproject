@@ -15,7 +15,7 @@ import { path } from "../utils";
 import Home from "../routes/Home";
 import HomePage from "../components/HomePage/HomePage";
 import Login from "./Auth/Login";
-import Header from "./Header/Header";
+// import Header from "./Header/Header";
 import System from "../routes/System";
 import CustomScrollbars from "../components/CustomScrollbars";
 import { CustomToastCloseButton } from "../components/CustomToast";
@@ -45,7 +45,8 @@ class App extends Component {
         <Router history={history}>
           <div className="main-container">
             {" "}
-            {this.props.isLoggedIn && <Header />}{" "}
+            {/* khi nao dang nhap thi hien thanh header */}
+            {/* {this.props.isLoggedIn && <Header />}{" "} */}
             <div className="content-container">
               <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
                 <Switch>
