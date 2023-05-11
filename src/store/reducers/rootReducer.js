@@ -5,6 +5,8 @@ import appReducer from "./appReducer";
 
 import userReducer from "./userReducer";
 
+import adminReducer from "./adminReducer";
+
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
@@ -31,4 +33,7 @@ export default (history) =>
     router: connectRouter(history),
     user: persistReducer(userPersistConfig, userReducer),
     app: persistReducer(appPersistConfig, appReducer),
+    admin: adminReducer,
   });
+//de su dung cac ham connect, mapstate,... phai khai bao key o day
+// file xuat cac reducer, dinh danh key(ten) cua cac reducer
