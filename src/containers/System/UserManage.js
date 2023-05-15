@@ -16,7 +16,7 @@ import {
 } from "../../services/userService";
 //import emitter
 import { emitter } from "../../utils/emitter";
-import { relativeTimeThreshold } from "moment/moment";
+
 class UserManage extends Component {
   constructor(props) {
     super(props);
