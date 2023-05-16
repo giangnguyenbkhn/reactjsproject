@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 // import { getAllCodeService } from "../../../services/userService";
-import { LANGUAGES, CRUD_ACTIONS } from "../../../utils";
+import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../utils";
 import * as actions from "../../../store/actions";
 import "./UserRedux.scss";
 //zoom image
@@ -98,17 +98,22 @@ class UserRedux extends Component {
         avatar: "",
         action: CRUD_ACTIONS.CREATE,
         userEditId: "",
+        previewImgURL: "",
       });
     }
   }
   //thay doi file anh
-  handleOnChangeImage = (event) => {
+  handleOnChangeImage = async (event) => {
     let file = event.target.files[0];
+
     if (file) {
+      let base64 = await CommonUtils.getBase64(file);
+
       let objectUrl = URL.createObjectURL(file);
+      // console.log(objectUrl);
       this.setState({
         previewImgURL: objectUrl,
-        avatar: file,
+        avatar: base64,
       });
     }
   };
@@ -170,7 +175,7 @@ class UserRedux extends Component {
           gender: this.state.gender,
           roleId: this.state.role,
           positionId: this.state.position,
-          // avatar: this.state.avatar,
+          avatar: this.state.avatar,
         });
       }
     } else if (action === CRUD_ACTIONS.EDIT) {
@@ -186,13 +191,17 @@ class UserRedux extends Component {
         gender: this.state.gender,
         roleId: this.state.role,
         positionId: this.state.position,
-        // avatar: this.state.avatar,
+        avatar: this.state.avatar,
       });
     }
   };
 
   handleEditUserFromParent = (user) => {
-    console.log(user);
+    let imageBase64 = "";
+    if (user.image) {
+      imageBase64 = new Buffer.from(user.image, "base64").toString("binary");
+      console.log(imageBase64);
+    }
     this.setState({
       userEditId: user.id,
       email: user.email,
@@ -204,8 +213,10 @@ class UserRedux extends Component {
       gender: user.gender,
       position: user.positionId,
       role: user.roleId,
-      avatar: "",
+      //neu  set gia tri avatar o day la "" thi ben api phai dat truong hop if( truong hop thay doi avatar moi(khac voi giu nguyen)) thi moi cap nhat image
+      avatar: imageBase64,
       action: CRUD_ACTIONS.EDIT,
+      previewImgURL: imageBase64,
     });
   };
   render() {

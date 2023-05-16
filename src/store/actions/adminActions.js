@@ -120,7 +120,7 @@ export const fetchAllUsersStart = () => {
   return async (dispatch, getState) => {
     try {
       let response = await getAllUsers("ALL");
-      console.log(response.users);
+      // console.log(response.users);
       if (response && response.users && response.errCode === 0) {
         dispatch(fetchallUsersSuccess(response.users.reverse()));
       } else {

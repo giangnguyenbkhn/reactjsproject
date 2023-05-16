@@ -28,7 +28,7 @@ class TableManageUser extends Component {
   };
   render() {
     //  console.log("render");
-    console.log("check list users", this.props.listUsers);
+    // console.log("check list users", this.props.listUsers);
     let arrUsers = this.state.userRedux;
     return (
       <div className="user-container">
