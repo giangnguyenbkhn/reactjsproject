@@ -50,5 +50,9 @@
     "image": "Ảnh đại diện",
     "save": "Lưu người dùng",
     "edit": "Cập nhật thông tin người dùng"
+  },
+  "homepage": {
+    "out-standing-doctor": "Bác sĩ nổi bật tuần qua",
+    "more-infor": "Xem thêm"
   }
 }

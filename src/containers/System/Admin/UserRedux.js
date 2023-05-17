@@ -61,7 +61,7 @@ class UserRedux extends Component {
       this.setState({
         genderArr: arrGender,
         // xet gia tri mac dinh cho gender,position,role
-        gender: arrGender && arrGender.length > 0 ? arrGender[0].key : "",
+        gender: arrGender && arrGender.length > 0 ? arrGender[0].keyMap : "",
       });
     }
     if (prevProps.positionsRedux !== this.props.positionsRedux) {
@@ -69,14 +69,14 @@ class UserRedux extends Component {
       this.setState({
         positionArr: arrPosition,
         position:
-          arrPosition && arrPosition.length > 0 ? arrPosition[0].key : "",
+          arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : "",
       });
     }
     if (prevProps.rolesRedux !== this.props.rolesRedux) {
       let arrRole = this.props.rolesRedux;
       this.setState({
         roleArr: arrRole,
-        role: arrRole && arrRole.length > 0 ? arrRole[0].key : "",
+        role: arrRole && arrRole.length > 0 ? arrRole[0].keyMap : "",
       });
     }
     //khi co su thay doi bang listuser(them dc ng dung,xoa ng dung,sua ng dung...) set state ve rong
@@ -91,10 +91,10 @@ class UserRedux extends Component {
         lastName: "",
         phoneNumber: "",
         address: "",
-        gender: arrGender && arrGender.length > 0 ? arrGender[0].key : "",
+        gender: arrGender && arrGender.length > 0 ? arrGender[0].keyMap : "",
         position:
-          arrPosition && arrPosition.length > 0 ? arrPosition[0].key : "",
-        role: arrRole && arrRole.length > 0 ? arrRole[0].key : "",
+          arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : "",
+        role: arrRole && arrRole.length > 0 ? arrRole[0].keyMap : "",
         avatar: "",
         action: CRUD_ACTIONS.CREATE,
         userEditId: "",
@@ -197,10 +197,11 @@ class UserRedux extends Component {
   };
 
   handleEditUserFromParent = (user) => {
+    // decode base64
     let imageBase64 = "";
     if (user.image) {
       imageBase64 = new Buffer.from(user.image, "base64").toString("binary");
-      console.log(imageBase64);
+      // console.log(imageBase64);
     }
     this.setState({
       userEditId: user.id,
@@ -346,7 +347,7 @@ class UserRedux extends Component {
                       genders.length > 0 &&
                       genders.map((item, index) => {
                         return (
-                          <option value={item.key} key={index}>
+                          <option value={item.keyMap} key={index}>
                             {language === LANGUAGES.VI
                               ? item.valueVi
                               : item.valueEn}
@@ -370,7 +371,7 @@ class UserRedux extends Component {
                       roles.length > 0 &&
                       roles.map((item, index) => {
                         return (
-                          <option value={item.key} key={index}>
+                          <option value={item.keyMap} key={index}>
                             {language === LANGUAGES.VI
                               ? item.valueVi
                               : item.valueEn}
@@ -394,7 +395,7 @@ class UserRedux extends Component {
                       positions.length > 0 &&
                       positions.map((item, index) => {
                         return (
-                          <option value={item.key} key={index}>
+                          <option value={item.keyMap} key={index}>
                             {language === LANGUAGES.VI
                               ? item.valueVi
                               : item.valueEn}
