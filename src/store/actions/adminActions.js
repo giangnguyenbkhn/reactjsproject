@@ -6,8 +6,10 @@ import {
   createNewUserService,
   editUserService,
   getAllCodeService,
+  getAllDoctors,
   getAllUsers,
   getTopDoctorHomeService,
+  saveDetailDoctors,
 } from "../../services/userService";
 import { deleteUserService } from "../../services/userService";
 // export const fetchGenderStart = () => ({
@@ -215,6 +217,56 @@ export const fetchTopDoctor = () => {
       console.log(error);
       dispatch({
         type: actionTypes.FETCH_TOP_DOCTOR_FAILED,
+      });
+    }
+  };
+};
+//get all doctors
+export const fetchAllDoctors = () => {
+  return async (dispatch, getState) => {
+    try {
+      let response = await getAllDoctors();
+      // console.log(response.doctors.data);
+      if (response && response.doctors.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALL_DOCTOR_SUCCESS,
+          dataAllDoctors: response.doctors.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALL_DOCTOR_FAILED,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: actionTypes.FETCH_ALL_DOCTOR_FAILED,
+      });
+    }
+  };
+};
+//
+export const saveDetailDoctor = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let response = await saveDetailDoctors(data);
+      console.log(response);
+      if (response && response.response.errCode === 0) {
+        toast.success("SAVE INFOR DETAIL DOCTOR SUCCESS");
+        dispatch({
+          type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
+        });
+      } else {
+        toast.error("SAVE INFOR DETAIL DOCTOR FAILED");
+        dispatch({
+          type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("SAVE INFOR DETAIL DOCTOR FAILED");
+      dispatch({
+        type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
       });
     }
   };

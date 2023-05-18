@@ -59,7 +59,7 @@ class OutStandingDoctor extends Component {
                       ).toString("binary");
                     }
                     let nameVi = `${item.positionData.valueVi}, ${item.firstName}  ${item.lastName}`;
-                    let nameEn = `${item.positionData.valueEn}, ${item.firstName}  ${item.lastName}`;
+                    let nameEn = `${item.positionData.valueEn}, ${item.lastName}  ${item.firstName}`;
                     return (
                       <div className="section-customize" key={index}>
                         <div className="outer-bg">
