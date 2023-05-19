@@ -5,9 +5,12 @@ import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../../utils/constant";
 //import Slider
 import Slider from "react-slick";
-
+import { Redirect } from "react-router-dom";
+import { push } from "connected-react-router";
+import { withRouter } from "react-router";
 // import OutStandingDoctorImg from "../../../assets/OutStandingDoctor/co-xuong-khop.jpg";
 import * as actions from "../../../store/actions";
+
 class OutStandingDoctor extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +28,10 @@ class OutStandingDoctor extends Component {
       });
     }
   }
+  //noi match tuyen duong
+  handleViewDetailDoctor = (doctor) => {
+    this.props.history.push(`/detail-doctor/${doctor.id}`);
+  };
   render() {
     let language = this.props.language;
     let arrDoctor = this.state.arrDoctor;
@@ -61,7 +68,11 @@ class OutStandingDoctor extends Component {
                     let nameVi = `${item.positionData.valueVi}, ${item.firstName}  ${item.lastName}`;
                     let nameEn = `${item.positionData.valueEn}, ${item.lastName}  ${item.firstName}`;
                     return (
-                      <div className="section-customize" key={index}>
+                      <div
+                        className="section-customize"
+                        key={index}
+                        onClick={() => this.handleViewDetailDoctor(item)}
+                      >
                         <div className="outer-bg">
                           <div
                             className="bg-image"
@@ -100,4 +111,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor)
+);

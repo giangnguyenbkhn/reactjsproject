@@ -8,6 +8,7 @@ import { LANGUAGES } from "../../utils";
 //import actions
 import { changeLanguageApp } from "../../store/actions";
 class HomeHeader extends Component {
+  this;
   changeLanguage = (language) => {
     // alert(language);
     //fire redux event: actions
@@ -102,65 +103,67 @@ class HomeHeader extends Component {
             </div>
           </div>
         </div>
-        <div className="home-header-banner">
-          <div className="content-up">
-            <div className="title1">
-              {" "}
-              <FormattedMessage id="banner.title1" />
-            </div>
-            <div className="title2">
-              <h1>
+        {this.props.isShowBanner === true && (
+          <div className="home-header-banner">
+            <div className="content-up">
+              <div className="title1">
                 {" "}
-                <FormattedMessage id="banner.title2" />
-              </h1>
-            </div>
-            <div className="search">
-              <i class="fas fa-search"></i>
-              <input type="text" placeholder="Tìm chuyên khoa khám bệnh" />
-            </div>
-          </div>
-          <div className="content-down">
-            <div className="options">
-              <div className="option-child">
-                <div className="icon-child one"></div>
-                <div className="text-child">
+                <FormattedMessage id="banner.title1" />
+              </div>
+              <div className="title2">
+                <h1>
                   {" "}
-                  <FormattedMessage id="banner.child1" />
-                </div>
+                  <FormattedMessage id="banner.title2" />
+                </h1>
               </div>
-              <div className="option-child">
-                <div className="icon-child two"></div>
-                <div className="text-child">
-                  <FormattedMessage id="banner.child2" />
-                </div>
+              <div className="search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Tìm chuyên khoa khám bệnh" />
               </div>
-              <div className="option-child">
-                <div className="icon-child three"></div>
-                <div className="text-child">
-                  <FormattedMessage id="banner.child3" />
+            </div>
+            <div className="content-down">
+              <div className="options">
+                <div className="option-child">
+                  <div className="icon-child one"></div>
+                  <div className="text-child">
+                    {" "}
+                    <FormattedMessage id="banner.child1" />
+                  </div>
                 </div>
-              </div>
-              <div className="option-child">
-                <div className="icon-child four"></div>
-                <div className="text-child">
-                  <FormattedMessage id="banner.child4" />
+                <div className="option-child">
+                  <div className="icon-child two"></div>
+                  <div className="text-child">
+                    <FormattedMessage id="banner.child2" />
+                  </div>
                 </div>
-              </div>
-              <div className="option-child">
-                <div className="icon-child five"></div>
-                <div className="text-child">
-                  <FormattedMessage id="banner.child5" />
+                <div className="option-child">
+                  <div className="icon-child three"></div>
+                  <div className="text-child">
+                    <FormattedMessage id="banner.child3" />
+                  </div>
                 </div>
-              </div>
-              <div className="option-child">
-                <div className="icon-child six"></div>
-                <div className="text-child">
-                  <FormattedMessage id="banner.child6" />
+                <div className="option-child">
+                  <div className="icon-child four"></div>
+                  <div className="text-child">
+                    <FormattedMessage id="banner.child4" />
+                  </div>
+                </div>
+                <div className="option-child">
+                  <div className="icon-child five"></div>
+                  <div className="text-child">
+                    <FormattedMessage id="banner.child5" />
+                  </div>
+                </div>
+                <div className="option-child">
+                  <div className="icon-child six"></div>
+                  <div className="text-child">
+                    <FormattedMessage id="banner.child6" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </>
     );
   }
