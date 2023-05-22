@@ -3,23 +3,49 @@ import { connect } from "react-redux";
 
 import * as actions from "../../store/actions";
 import Navigator from "../../components/Navigator";
-import { adminMenu } from "./menuApp";
+import { adminMenu, doctorMenu } from "./menuApp";
 import "./Header.scss";
-import { LANGUAGES } from "../../utils";
+import { LANGUAGES, USER_ROLE } from "../../utils";
 import { changeLanguageApp } from "../../store/actions";
 import { FormattedMessage } from "react-intl";
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuApp: [],
+    };
+  }
   handleChangeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
   };
+  componentDidMount() {
+    // check quyen nguoi dung
+    let { userInfo } = this.props;
+    console.log(userInfo);
+    let menu = [];
+    if (userInfo) {
+      let role = userInfo.roleId;
+      if (role === USER_ROLE.ADMIN) {
+        menu = adminMenu;
+      } else if (role === USER_ROLE.DOCTOR) {
+        menu = doctorMenu;
+      }
+    }
+
+    this.setState({
+      menuApp: menu,
+    });
+  }
   render() {
     const { processLogout, language, userInfo } = this.props;
+    let menuApp = this.state.menuApp;
+    console.log(menuApp);
     // console.log(userInfo);
     return (
       /* thanh navigator */
       <div className="header-container">
         <div className="header-tabs-container">
-          <Navigator menus={adminMenu} />{" "}
+          <Navigator menus={menuApp} />{" "}
         </div>
         <div className="languages">
           <span className="welcome">

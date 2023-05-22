@@ -4,6 +4,7 @@ import HomeHeader from "../../../components/HomePage/HomeHeader";
 import "./DetailDoctor.scss";
 import { getDetailDoctorService } from "../../../services/userService";
 import { LANGUAGES } from "../../../utils";
+// import { convert } from "html-to-text";
 class DetailDoctor extends Component {
   constructor(props) {
     super(props);
@@ -28,12 +29,23 @@ class DetailDoctor extends Component {
     }
   }
   componentDidUpdate(prevProps, prevState) {}
+  //   convertHtmlToText = (html) => {
+  //     const parser = new DOMParser();
+  //     const doc = parser.parseFromString(html, "text/html");
+  //     return doc.body.textContent;
+  //   };
   render() {
     // console.log(this.state);
     let language = this.props.language;
     let detailDoctor = this.state.detailDoctor;
     let nameVi = "";
     let nameEn = "";
+    // const options = {
+    //   wordwrap: 130,
+    //   // ...
+    // };
+    // let contentHTML = convert(`${detailDoctor.Markdown.contentHTML}`, options);
+    // console.log(contentHTML);
     if (detailDoctor && detailDoctor.positionData) {
       nameVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.firstName}  ${detailDoctor.lastName}`;
       nameEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.lastName}  ${detailDoctor.firstName}`;
@@ -73,9 +85,12 @@ class DetailDoctor extends Component {
                   dangerouslySetInnerHTML={{
                     __html: detailDoctor.Markdown.contentHTML,
                   }}
-                ></div>
+                >
+                  {/* {this.convertHtmlToText(detailDoctor.Markdown.contentHTML)} */}
+                </div>
               )}
           </div>
+
           <div className="comment-doctor"></div>
         </div>
       </>

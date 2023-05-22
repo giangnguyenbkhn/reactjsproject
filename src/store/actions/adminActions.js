@@ -256,6 +256,7 @@ export const saveDetailDoctor = (data) => {
         dispatch({
           type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
         });
+        dispatch(fetchAllDoctors());
       } else {
         toast.error("SAVE INFOR DETAIL DOCTOR FAILED");
         dispatch({
