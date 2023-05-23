@@ -77,9 +77,15 @@ export const doctorMenu = [
         name: "menu.doctor.manage-schedule",
         link: "/doctor/manage-schedule",
       },
+      {
+        name: "vidu",
+        link: "/doctor/manage-schedule-vidu",
+      },
     ],
   },
 ];
 // khai bao menu dong
 //phan quyen cho cac loai nguoi dung
 //file quan li name va duong link cua cac quan li tren thanh header lien ket voi 2 file dich vi.json va en.json
+//moi duong link se dan toi 1 component o file routes
+//  dieu huong 3 match voi cac duong link

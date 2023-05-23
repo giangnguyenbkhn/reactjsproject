@@ -272,4 +272,28 @@ export const saveDetailDoctor = (data) => {
     }
   };
 };
+//fetch all time
+export const fetchAllScheduleHours = (type) => {
+  return async (dispatch, getState) => {
+    try {
+      let response = await getAllCodeService(type);
+      // console.log(response.doctors.data);
+      if (response && response.data.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALLCODE_SCHEDULE_HOURS_SUCCESS,
+          dataTimes: response.data.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALLCODE_SCHEDULE_HOURS_FAILED,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: actionTypes.FETCH_ALLCODE_SCHEDULE_HOURS_FAILED,
+      });
+    }
+  };
+};
 // let response1 = await getTopDoctorHomeService(2);

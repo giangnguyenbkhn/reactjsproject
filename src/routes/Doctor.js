@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 
 import Header from "../containers/Header/Header";
 import manageSchedule from "../containers/System/Doctor/manageSchedule";
+import manageSchedulevidu from "../containers/System/Doctor/manageSchedulevidu";
 
 class Doctor extends Component {
   render() {
@@ -17,6 +18,10 @@ class Doctor extends Component {
               <Route
                 path="/doctor/manage-schedule"
                 component={manageSchedule}
+              />
+              <Route
+                path="/doctor/manage-schedule-vidu"
+                component={manageSchedulevidu}
               />
             </Switch>
           </div>
@@ -38,3 +43,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Doctor);
+// dieu huong 2
