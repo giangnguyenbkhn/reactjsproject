@@ -12,6 +12,7 @@ import DatePicker from "../../../components/Input/DatePicker";
 import moment from "moment";
 import { toast } from "react-toastify";
 import { isEmpty } from "lodash";
+import { saveBulkScheduleDoctor } from "../../../services/userService";
 // import FormattedDate from "../../../components/Formating/FormattedDate";
 
 class manageSchedule extends Component {
@@ -53,6 +54,7 @@ class manageSchedule extends Component {
     }
     if (prevProps.scheduleTimes !== this.props.scheduleTimes) {
       let data = this.props.scheduleTimes;
+      console.log(this.props.scheduleTimes);
       //them thuoc tinh isSelected cho danh sach schedulesTimes
       if (data && data.length > 0) {
         data.map((item) => {
@@ -90,7 +92,7 @@ class manageSchedule extends Component {
       });
     }
   };
-  handleSaveSchedule = () => {
+  handleSaveSchedule = async () => {
     let { rangeTime, selectedDoctor, currentDate } = this.state;
     let result = [];
     if (selectedDoctor && isEmpty(selectedDoctor)) {
@@ -101,24 +103,33 @@ class manageSchedule extends Component {
       toast.error("Invalid selected Date !");
       return;
     }
-    let formatDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+    // let formatDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+    //convert qua kieu du lieu timestamp
+    let formatDate = new Date(currentDate).getTime();
+    // let formatDate = moment(currentDate).unix();
     if (rangeTime && rangeTime.length > 0) {
       let selectedTime = rangeTime.filter((item) => item.isSelected === true);
       if (selectedTime && selectedTime.length > 0) {
         selectedTime.map((item) => {
           let obj = {};
           obj.doctorId = selectedDoctor.value;
-          obj.currentDate = formatDate;
-          obj.Schedule = item.keyMap;
+          obj.date = formatDate;
+          obj.timeType = item.keyMap;
           result.push(obj);
         });
         console.log("day la data gui ve backend", result);
-        return result;
+        // return result;
       } else {
         toast.error("Invalid selected Time ");
         return;
       }
     }
+    let response = await saveBulkScheduleDoctor({
+      arrSchedule: result,
+      doctorId: selectedDoctor.value,
+      date: formatDate,
+    });
+    console.log("check response save", response);
   };
   render() {
     // const { isLoggedIn } = this.props;
