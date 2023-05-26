@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 import "./manageSchedule.scss";
 import * as actions from "../../../store/actions";
 import Select from "react-select";
-import { LANGUAGES, dateFormat } from "../../../utils";
+import { LANGUAGES } from "../../../utils";
 // import Header from "../containers/Header/Header";
 //date picker
 import DatePicker from "../../../components/Input/DatePicker";

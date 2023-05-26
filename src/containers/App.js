@@ -71,10 +71,10 @@ class App extends Component {
                     path={"/doctor"}
                     component={userIsAuthenticated(Doctor)}
                   />{" "}
-                  <Route
+                  {/* <Route
                     path={path.SYSTEM}
                     component={userIsAuthenticated(System)}
-                  />{" "}
+                  />{" "} */}
                 </Switch>{" "}
               </CustomScrollbars>
             </div>{" "}

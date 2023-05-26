@@ -4,6 +4,7 @@ import HomeHeader from "../../../components/HomePage/HomeHeader";
 import "./DetailDoctor.scss";
 import { getDetailDoctorService } from "../../../services/userService";
 import { LANGUAGES } from "../../../utils";
+import DoctorSchedule from "./doctorSchedule";
 // import { convert } from "html-to-text";
 class DetailDoctor extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class DetailDoctor extends Component {
           detailDoctor: response.response.data,
         });
       }
-      console.log("check detail doctor", response);
+      // console.log("check detail doctor", response);
     }
   }
   componentDidUpdate(prevProps, prevState) {}
@@ -76,7 +77,16 @@ class DetailDoctor extends Component {
               </div>
             </div>
           </div>
-          <div className="schedule-doctor"></div>
+          <div className="schedule-doctor">
+            <div className="content-left">
+              <DoctorSchedule
+                doctorId={
+                  detailDoctor && detailDoctor.id ? detailDoctor.id : -1
+                }
+              />
+            </div>
+            <div className="content-right"></div>
+          </div>
           <div className="detail-infor-doctor">
             {detailDoctor &&
               detailDoctor.Markdown &&
