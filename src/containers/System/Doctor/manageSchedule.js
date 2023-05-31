@@ -129,7 +129,11 @@ class manageSchedule extends Component {
       doctorId: selectedDoctor.value,
       date: formatDate,
     });
-    console.log("check response save", response);
+    if (response && response.response.errCode === 0) {
+      toast.success("Tạo lịch khám cho bác sĩ thành công");
+    } else {
+      toast.error("Tạo lịch khám cho bác sĩ thất bại");
+    }
   };
   render() {
     // const { isLoggedIn } = this.props;
