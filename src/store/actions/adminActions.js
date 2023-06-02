@@ -297,3 +297,46 @@ export const fetchAllScheduleHours = (type) => {
   };
 };
 // let response1 = await getTopDoctorHomeService(2);
+//fetch price doctor
+export const getRequiredDoctorInfor = () => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_START,
+      });
+      let responsePrice = await getAllCodeService("PRICE");
+      let responsePayment = await getAllCodeService("PAYMENT");
+      let responseProvince = await getAllCodeService("PROVINCE");
+      if (
+        responsePrice &&
+        responsePrice.data &&
+        responsePrice.data.errCode === 0 &&
+        responsePayment &&
+        responsePayment.data &&
+        responsePayment.data.errCode === 0 &&
+        responseProvince &&
+        responseProvince.data &&
+        responseProvince.data.errCode === 0
+      ) {
+        let data = {
+          resPrice: responsePrice.data,
+          resPayment: responsePayment.data,
+          resProvince: responseProvince.data,
+        };
+        dispatch(fetchRequiredDoctorInforSuccess(data));
+      } else {
+        dispatch(fetchRequiredDoctorInforFailed());
+      }
+    } catch (error) {
+      dispatch(fetchRequiredDoctorInforFailed());
+      console.log(error);
+    }
+  };
+};
+export const fetchRequiredDoctorInforSuccess = (allRequiredData) => ({
+  type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_SUCCESS,
+  data: allRequiredData,
+});
+export const fetchRequiredDoctorInforFailed = () => ({
+  type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAILED,
+});
